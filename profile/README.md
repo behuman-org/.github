@@ -21,6 +21,8 @@ Hoy elegís entre dos males: o te exponés con tu nombre, o no sabés a quién l
 
 Construido sobre **Stellar** (Soroban + pruebas ZK Groth16) para el **PULSO Hackathon**. El repositorio abierto es el monorepo **human** - verificación en testnet hoy, infraestructura de personhood para todo el ecosistema mañana.
 
+**No es una app genérica con wallet pegada.** Stellar es la capa de confianza del producto: contratos Soroban, activos de la red (XLM/USDC), protocolos DeFi del ecosistema y onboarding real para personas de Argentina y la región.
+
 ### ⭐️ Nuestro proyecto
 
 | Proyecto | Descripción |
@@ -83,6 +85,44 @@ Construido sobre **Stellar** (Soroban + pruebas ZK Groth16) para el **PULSO Hack
 
 **Regla de oro:** humano real = sí · identificable = no.
 
+### 🌐 Integración genuina con Stellar
+
+human responde a lo que el ecosistema busca: **producto para personas reales**, con **integración real a la red** y **arraigo local**. No somos freelance, marketplace ni DeFi especulativo.
+
+| Protocolo / primitiva | Qué hace en human | Estado |
+| :--- | :--- | :---: |
+| **Stellar + Soroban** | Contratos `kyc_verifier`, `opinion_board`, `campaign_controller` - identidad, posts y causas on-chain | ✅ testnet |
+| **Pruebas ZK (Groth16, BLS12-381)** | Verificación y nullifier anti-Sybil sin PII on-chain | ✅ testnet |
+| **Activos SAC (XLM)** | Donaciones y campañas sobre activo nativo de Stellar | ✅ validado |
+| **DeFindex** | Vaults con yield; depósito real al vault XLM oficial de testnet | ✅ on-chain |
+| **Blend** (vía DeFindex) | Estrategia de liquidez detrás del vault; rendimiento para causas | ✅ integrado |
+| **Trustless Work** | Escrow y workflow 2-de-3 para release/refund de campañas | ✅ flujo validado |
+| **Pollar** | Onboarding social (email/Google) + wallet custodial en Stellar testnet | ✅ en vivo |
+| **Friendbot + cuentas efímeras** | Gas patrocinado; acciones anónimas sin wallet previa | ✅ en uso |
+| **Wallets Stellar** | Freighter, xBull, LOBSTR vía Stellar Wallets Kit | ✅ soportado |
+
+**DeFi con propósito local (no trading):** la Capa 3 de funding une personhood ZK con crowdfund condicional para causas. El capital entra a vault **DeFindex/Blend**, las reglas las enforcea `campaign_controller` on-chain, y **Trustless Work** resuelve el workflow de release - todo atado a apoyar causas reales, no a especulación.
+
+```
+Usuario verificado (ZK)
+        │
+        ├─ Opinar ──► opinion_board (Soroban) + feed off-chain
+        │
+        └─ Apoyar causa ──► campaign_controller (Soroban)
+                                    │
+                    ┌───────────────┼───────────────┐
+                    ▼               ▼               ▼
+              DeFindex vault    Blend strategy   Trustless Work
+              (yield XLM)       (liquidez)       (escrow 2-de-3)
+```
+
+| Lo que evitamos (criterios PULSO) | Cómo responde human |
+| :--- | :--- |
+| App genérica con Stellar superficial | Soroban es el núcleo: verificación, posts y campañas viven on-chain |
+| DeFi especulativo sin necesidad real | Yield en vaults al servicio de **causas locales** con reglas todo-o-nada |
+| Contratos aislados de la red | Interacción real con **DeFindex, Blend, Trustless Work** y activos SAC |
+| Producto sin contexto local | **Argentina primero**: DNI local, entrevistas con usuarios, español primero |
+
 ### 🎯 Qué hace diferente a human
 
 | | Con tu nombre | Anónimo de hoy (Reddit, foros) | KYC tradicional | **human** |
@@ -118,6 +158,10 @@ Construido sobre **Stellar** (Soroban + pruebas ZK Groth16) para el **PULSO Hack
 | **opinion_board** (e2e) | [`CD2XVZTQTQZL3LU4E6PH7EXDGV2VX6KNAN2L3TROKJAR6U45SC2K2T6M`][opinion-e2e-link] |
 | **opinion_board** (demo front) | [`CAZOMMMZSKI2EHH6PHP53NJ3K4DGAJ4JBRAR4HPVNN2QJ4VIF7WJKOQK`][opinion-demo-link] |
 | **campaign_controller** (demo) | [`CB5NYUPBHDNTSN7MVJOALELTIY4BXGPTGUR6JPA7SQSZRTA46G6GIOAM`][campaign-link] |
+| **DeFindex vault XLM** (testnet) | [`CCLV4H7WTLJQ7ATLHBBQV2WW3OINF3FOY5XZ7VPHZO7NH3D2ZS4GFSF6`][defindex-vault-link] |
+| **Blend strategy XLM** (testnet) | [`CDVLOSPJPQOTB6ZCWO5VSGTOLGMKTXSFWYTUP572GTPNOWX4F76X3HPM`][blend-strategy-link] |
+| **Trustless Work escrow** (testnet) | [`CAUIE5WKHQ2FNIIXRY2HVVEUE55SXSPNKIWAFEJPLVMS5XI35YZL2E76`][tw-escrow-link] |
+| **XLM SAC** (testnet) | [`CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC`][xlm-sac-link] |
 | **Red** | `testnet` |
 | **RPC** | `https://soroban-testnet.stellar.org` |
 | **Passphrase** | `Test SDF Network ; September 2015` |
@@ -145,9 +189,11 @@ Hoy validamos el problema. Cuando escalemos, dos motores:
 
 También exploramos: artículos con sello de veracidad · comisión sobre apoyo a causas.
 
-### 🌍 Mercado
+### 🌍 Mercado local y research
 
-- **Argentina primero:** documento local, entrevistas con usuarios de la región, mercado que entendemos de verdad.
+- **Argentina primero:** verificación con **documento argentino (DNI)** y rostro en vivo; arrancamos donde entendemos el contexto y el dolor.
+- **Entrevistas con personas reales** para validar el problema antes de escalar - no suposiciones de producto.
+- **Español primero** (i18n EN/ES); UX pensada para adopción local, con **Pollar** para entrar sin wallet.
 - **El dolor es universal:** casi todos alguna vez nos callamos algo por miedo a que quede con nuestro nombre.
 - **Latinoamérica después:** +450M de personas con internet comparten el mismo problema - mismo producto, más mercado.
 
@@ -211,6 +257,10 @@ Pendiente de definir por repositorio. Hackathon requiere código open-source.
 [opinion-e2e-link]: https://stellar.expert/explorer/testnet/contract/CD2XVZTQTQZL3LU4E6PH7EXDGV2VX6KNAN2L3TROKJAR6U45SC2K2T6M
 [opinion-demo-link]: https://stellar.expert/explorer/testnet/contract/CAZOMMMZSKI2EHH6PHP53NJ3K4DGAJ4JBRAR4HPVNN2QJ4VIF7WJKOQK
 [campaign-link]: https://stellar.expert/explorer/testnet/contract/CB5NYUPBHDNTSN7MVJOALELTIY4BXGPTGUR6JPA7SQSZRTA46G6GIOAM
+[defindex-vault-link]: https://stellar.expert/explorer/testnet/contract/CCLV4H7WTLJQ7ATLHBBQV2WW3OINF3FOY5XZ7VPHZO7NH3D2ZS4GFSF6
+[blend-strategy-link]: https://stellar.expert/explorer/testnet/contract/CDVLOSPJPQOTB6ZCWO5VSGTOLGMKTXSFWYTUP572GTPNOWX4F76X3HPM
+[tw-escrow-link]: https://stellar.expert/explorer/testnet/contract/CAUIE5WKHQ2FNIIXRY2HVVEUE55SXSPNKIWAFEJPLVMS5XI35YZL2E76
+[xlm-sac-link]: https://stellar.expert/explorer/testnet/contract/CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC
 
 [explorer-link]: https://stellar.expert/explorer/testnet
 [faucet-link]: https://friendbot.stellar.org
