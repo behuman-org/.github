@@ -116,6 +116,8 @@ Usuario verificado (ZK)
 
 El foco inicial es local: documento argentino, entrevistas con usuarios de la región, español primero y onboarding sin exigir experiencia previa con wallets.
 
+**Pitch deck:** [`docs/human-pitch.pdf`](../docs/human-pitch.pdf)
+
 ### 🎯 Qué hace diferente a human
 
 | | Con tu nombre | Anónimo de hoy (Reddit, foros) | KYC tradicional | **human** |
@@ -235,7 +237,7 @@ Pendiente de definir por repositorio. Hackathon requiere código open-source.
 [repo-link]: https://github.com/behuman-org/human
 [github-star]: https://img.shields.io/github/stars/behuman-org/human?color=0EA5E9&labelColor=0A0A0A&style=flat-square&logo=github
 
-[pitch-deck-link]: https://github.com/behuman-org
+[pitch-deck-link]: https://github.com/behuman-org/.github/blob/main/docs/human-pitch.pdf
 [pitch-deck-shield]: https://img.shields.io/badge/pitch%20deck-view-0EA5E9?labelColor=0A0A0A&style=flat-square&logo=googleslides&logoColor=white
 
 [stellar-link]: https://stellar.org
