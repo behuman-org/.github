@@ -21,8 +21,6 @@ Hoy elegís entre dos males: o te exponés con tu nombre, o no sabés a quién l
 
 Construido sobre **Stellar** (Soroban + pruebas ZK Groth16) para el **PULSO Hackathon**. El repositorio abierto es el monorepo **human** - verificación en testnet hoy, infraestructura de personhood para todo el ecosistema mañana.
 
-**No es una app genérica con wallet pegada.** Stellar es la capa de confianza del producto: contratos Soroban, activos de la red (XLM/USDC), protocolos DeFi del ecosistema y onboarding real para personas de Argentina y la región.
-
 ### ⭐️ Nuestro proyecto
 
 | Proyecto | Descripción |
@@ -85,23 +83,23 @@ Construido sobre **Stellar** (Soroban + pruebas ZK Groth16) para el **PULSO Hack
 
 **Regla de oro:** humano real = sí · identificable = no.
 
-### 🌐 Integración genuina con Stellar
+### 🌐 Stack Stellar
 
-human responde a lo que el ecosistema busca: **producto para personas reales**, con **integración real a la red** y **arraigo local**. No somos freelance, marketplace ni DeFi especulativo.
+La arquitectura usa Stellar en tres niveles: identidad verificable, publicaciones ancladas y una capa de apoyo a causas. Cada integración cumple una función concreta dentro del flujo de producto.
 
-| Protocolo / primitiva | Qué hace en human | Estado |
+| Protocolo / primitiva | Rol en human | Estado |
 | :--- | :--- | :---: |
-| **Stellar + Soroban** | Contratos `kyc_verifier`, `opinion_board`, `campaign_controller` - identidad, posts y causas on-chain | ✅ testnet |
-| **Pruebas ZK (Groth16, BLS12-381)** | Verificación y nullifier anti-Sybil sin PII on-chain | ✅ testnet |
-| **Activos SAC (XLM)** | Donaciones y campañas sobre activo nativo de Stellar | ✅ validado |
-| **DeFindex** | Vaults con yield; depósito real al vault XLM oficial de testnet | ✅ on-chain |
-| **Blend** (vía DeFindex) | Estrategia de liquidez detrás del vault; rendimiento para causas | ✅ integrado |
-| **Trustless Work** | Escrow y workflow 2-de-3 para release/refund de campañas | ✅ flujo validado |
-| **Pollar** | Onboarding social (email/Google) + wallet custodial en Stellar testnet | ✅ en vivo |
-| **Friendbot + cuentas efímeras** | Gas patrocinado; acciones anónimas sin wallet previa | ✅ en uso |
-| **Wallets Stellar** | Freighter, xBull, LOBSTR vía Stellar Wallets Kit | ✅ soportado |
+| **Stellar + Soroban** | Contratos `kyc_verifier`, `opinion_board`, `campaign_controller` para identidad, posts y campañas | testnet |
+| **Pruebas ZK (Groth16, BLS12-381)** | Verificación de humanidad y nullifiers anti-Sybil sin PII on-chain | testnet |
+| **Activos SAC (XLM)** | Activo de prueba para campañas y donaciones anónimas | validado |
+| **DeFindex** | Vault XLM para que los fondos de campañas puedan generar rendimiento | validado on-chain |
+| **Blend** (vía DeFindex) | Estrategia de liquidez usada por el vault | integrado |
+| **Trustless Work** | Escrow y workflow 2-de-3 para hitos, release y refund | flujo validado |
+| **Pollar** | Entrada con email/Google y wallet en Stellar para bajar fricción de onboarding | en vivo |
+| **Friendbot + cuentas efímeras** | Gas de testnet para publicar sin ligar la acción al address de KYC | en uso |
+| **Wallets Stellar** | Freighter, xBull y LOBSTR vía Stellar Wallets Kit | soportado |
 
-**DeFi con propósito local (no trading):** la Capa 3 de funding une personhood ZK con crowdfund condicional para causas. El capital entra a vault **DeFindex/Blend**, las reglas las enforcea `campaign_controller` on-chain, y **Trustless Work** resuelve el workflow de release - todo atado a apoyar causas reales, no a especulación.
+**Capa de apoyo a causas:** la misma identidad anónima puede habilitar donaciones y opiniones por campaña. El capital entra a un vault **DeFindex/Blend**, las reglas de campaña viven en `campaign_controller`, y **Trustless Work** modela el workflow de hitos y release.
 
 ```
 Usuario verificado (ZK)
@@ -116,12 +114,7 @@ Usuario verificado (ZK)
               (yield XLM)       (liquidez)       (escrow 2-de-3)
 ```
 
-| Lo que evitamos (criterios PULSO) | Cómo responde human |
-| :--- | :--- |
-| App genérica con Stellar superficial | Soroban es el núcleo: verificación, posts y campañas viven on-chain |
-| DeFi especulativo sin necesidad real | Yield en vaults al servicio de **causas locales** con reglas todo-o-nada |
-| Contratos aislados de la red | Interacción real con **DeFindex, Blend, Trustless Work** y activos SAC |
-| Producto sin contexto local | **Argentina primero**: DNI local, entrevistas con usuarios, español primero |
+El foco inicial es local: documento argentino, entrevistas con usuarios de la región, español primero y onboarding sin exigir experiencia previa con wallets.
 
 ### 🎯 Qué hace diferente a human
 
